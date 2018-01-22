@@ -24,6 +24,7 @@ def softmax(x):
 
     # Create a vector x_sum that sums each row of x_exp. Use np.sum(..., axis = 1, keepdims = True).
     x_sum = np.sum(x_exp, axis = 1, keepdims = True)
+    print ("\nx_sum =", x_sum)
     
     # Compute softmax(x) by dividing x_exp by x_sum. It should automatically use numpy broadcasting.
     s = x_exp / x_sum
