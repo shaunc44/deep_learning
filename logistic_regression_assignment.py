@@ -6,7 +6,7 @@ from PIL import Image
 from scipy import ndimage
 from lr_utils import load_dataset
 
-%matplotlib inline
+# %matplotlib inline
 
 
 """
@@ -56,14 +56,15 @@ Exercise: Find the values for:
 - num_px (= height = width of a training image)
 
 Remember that train_set_x_orig is a numpy-array of shape (m_train, num_px, num_px, 3). 
+-> train_set_x_orig = np.array(m_train, num_px, num_px, 3)
 For instance, you can access m_train by writing train_set_x_orig.shape[0].
 """
 
 
 ### START CODE HERE ### (≈ 3 lines of code)
-m_train = None
-m_test = None
-num_px = None
+m_train = train_set_x_orig.shape[0]
+m_test = test_set_x_orig.shape[0]
+num_px = train_set_x_orig.shape[1]
 ### END CODE HERE ###
 
 print ("Number of training examples: m_train = " + str(m_train))
