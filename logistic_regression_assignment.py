@@ -77,7 +77,49 @@ print ("test_set_x shape: " + str(test_set_x_orig.shape))
 print ("test_set_y shape: " + str(test_set_y.shape))
 
 
+"""
+For convenience, you should now reshape images of shape (num_px, num_px, 3) in a numpy-array of shape (num_px ∗∗ num_px ∗∗ 3, 1). After this, our training (and test) dataset is a numpy-array where each column represents a flattened image. There should be m_train (respectively m_test) columns.
 
+Exercise: Reshape the training and test data sets so that images of size (num_px, num_px, 3) are flattened into single vectors of shape (num_px ∗∗ num_px ∗∗ 3, 1).
+
+A trick when you want to flatten a matrix X of shape (a,b,c,d) to a matrix X_flatten of shape (b∗∗c∗∗d, a) is to use:
+
+X_flatten = X.reshape(X.shape[0], -1).T      # X.T is the transpose of X
+"""
+
+# Reshape the training and test examples
+
+### START CODE HERE ### (≈ 2 lines of code)
+train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[0], -1).T
+test_set_x_flatten = test_set_x_orig.reshape(test_set_x_orig.shape[0], -1).T
+### END CODE HERE ###
+
+print ("train_set_x_flatten shape: " + str(train_set_x_flatten.shape))
+print ("train_set_y shape: " + str(train_set_y.shape))
+print ("test_set_x_flatten shape: " + str(test_set_x_flatten.shape))
+print ("test_set_y shape: " + str(test_set_y.shape))
+print ("sanity check after reshaping: " + str(train_set_x_flatten[0:5,0]))
+
+
+"""
+To represent color images, the red, green and blue channels (RGB) must be specified for each pixel, and so the pixel value is actually a vector of three numbers ranging from 0 to 255.
+
+One common preprocessing step in machine learning is to center and standardize your dataset, meaning that you substract the mean of the whole numpy array from each example, and then divide each example by the standard deviation of the whole numpy array. But for picture datasets, it is simpler and more convenient and works almost as well to just divide every row of the dataset by 255 (the maximum value of a pixel channel).
+
+Let's standardize our dataset.
+"""
+
+train_set_x = train_set_x_flatten/255.0
+test_set_x = test_set_x_flatten/255.0
+
+"""
+What you need to remember:
+
+Common steps for pre-processing a new dataset are:
+  1. Figure out the dimensions and shapes of the problem (m_train, m_test, num_px, ...)
+  2. Reshape the datasets such that each example is now a vector of size (num_px * num_px * 3, 1)
+  3. "Standardize" the data
+"""
 
 
 
