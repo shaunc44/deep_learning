@@ -122,6 +122,77 @@ Common steps for pre-processing a new dataset are:
 """
 
 
+"""
+4 - Building the parts of our algorithm¶
+
+The main steps for building a Neural Network are:
+
+    Define the model structure (such as number of input features)
+    Initialize the model's parameters
+    Loop:
+        Calculate current loss (forward propagation)
+        Calculate current gradient (backward propagation)
+        Update parameters (gradient descent)
+
+You often build 1-3 separately and integrate them into one function we call model().
+4.1 - Helper functions
+
+Exercise: Using your code from "Python Basics", implement sigmoid(). 
+As you've seen in the figure above, you need to compute 
+sigmoid(wTx+b) = 1 / 1 + e−(wTx+b) to make predictions. Use np.exp().
+"""
+
+
+# GRADED FUNCTION: sigmoid
+
+def sigmoid(z):
+    """
+    Compute the sigmoid of z
+
+    Arguments:
+    z -- A scalar or numpy array of any size.
+
+    Return:
+    s -- sigmoid(z)
+    """
+
+    ### START CODE HERE ### (≈ 1 line of code)
+    s = 1 / ( 1 + np.exp(-z) )
+    ### END CODE HERE ###
+    
+    return s
+
+
+"""
+4.2 - Initializing parameters
+
+Exercise: Implement parameter initialization in the cell below. You have to initialize w as a vector of zeros. If you don't know what numpy function to use, look up np.zeros() in the Numpy library's documentation.
+"""
+
+# GRADED FUNCTION: initialize_with_zeros
+
+def initialize_with_zeros(dim):
+    """
+    This function creates a vector of zeros of shape (dim, 1) for w and initializes b to 0.
+    
+    Argument:
+    dim -- size of the w vector we want (or number of parameters in this case)
+    
+    Returns:
+    w -- initialized vector of shape (dim, 1)
+    b -- initialized scalar (corresponds to the bias)
+    """
+    
+    ### START CODE HERE ### (≈ 1 line of code)
+    w = np.zeros( (dim, 1) )
+    b = 0
+    ### END CODE HERE ###
+
+    assert(w.shape == (dim, 1))
+    assert(isinstance(b, float) or isinstance(b, int))
+    
+    return w, b
+
 
 
 
