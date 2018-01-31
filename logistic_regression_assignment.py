@@ -243,14 +243,19 @@ def propagate(w, b, X, Y):
     
     # FORWARD PROPAGATION (FROM X TO COST)
     ### START CODE HERE ### (≈ 2 lines of code)
-    A = None                                    # compute activation
-    cost = None                                 # compute cost
+    A = sigmoid(np.dot(w.T, X) + b)
+    print ("A =", A)
+    #A = np.dot(w.T, X) + b                                    # compute activation
+    cost = (-1/m) * np.sum(Y*np.log(A)) + (1-Y)*(np.log(1-A))  # compute cost
+    print ("Cost =", cost)
     ### END CODE HERE ###
     
     # BACKWARD PROPAGATION (TO FIND GRAD)
     ### START CODE HERE ### (≈ 2 lines of code)
-    dw = None
-    db = None
+    dw = np.dot(X, (A-Y).T)/m
+    print ("dw =", dw)
+    db = (1/m) * np.sum(A-Y)
+    print ("db =", db)
     ### END CODE HERE ###
 
     assert(dw.shape == w.shape)
@@ -260,7 +265,7 @@ def propagate(w, b, X, Y):
     
     grads = {"dw": dw,
              "db": db}
-
+    
     return grads, cost
 
 
