@@ -488,12 +488,14 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations = 2000, learning_rate
     ### START CODE HERE ###
     
     # initialize parameters with zeros (≈ 1 line of code)
-    w, b = initialize_with_zeros(2)
+    w, b = initialize_with_zeros(X_train.shape[0])
     print ("w =", w)
+    print ("w length", len(w))
     print ("b =", b)
+    #print ("b length", len(b))
 
     # Gradient descent (≈ 1 line of code)
-    parameters, grads, costs = optimize(w, b, X, Y, num_iterations, learning_rate, print_cost)
+    parameters, grads, costs = optimize(w, b, X_train, Y_train, num_iterations, learning_rate, print_cost)
     print ("Parameters =", parameters)
     print ("Grads =", grads)
     print ("Costs =", costs)
@@ -501,12 +503,14 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations = 2000, learning_rate
     # Retrieve parameters w and b from dictionary "parameters"
     w = parameters["w"]
     b = parameters["b"]
+    print ("w =", w)
+    print ("b =", b)
     
     # Predict test/train set examples (≈ 2 lines of code)
     print ("X_test =", X_test)
     print ("X_test Length =", len(X_test))
-    Y_prediction_test = predict(w, b, test_set_x)
-    Y_prediction_train = predict(w, b, train_set_x)
+    Y_prediction_test = predict(w, b, X_test)
+    Y_prediction_train = predict(w, b, X_train)
     print ("Y_prediction_test =", Y_prediction_test)
     print ("Y_prediction_train =", Y_prediction_train)
 
@@ -526,11 +530,6 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations = 2000, learning_rate
          "num_iterations": num_iterations}
     
     return d
-
-
-d = model(train_set_x, train_set_y, test_set_x, test_set_y, 
-          num_iterations = 2000, learning_rate = 0.005, 
-          print_cost = True)
 
 
 
