@@ -62,9 +62,9 @@ For instance, you can access m_train by writing train_set_x_orig.shape[0].
 
 
 ### START CODE HERE ### (≈ 3 lines of code)
-m_train = train_set_x_orig.shape[0]
-m_test = test_set_x_orig.shape[0]
-num_px = train_set_x_orig.shape[1]
+m_train = train_set_x_orig.shape[0] # gives number of rows
+m_test = test_set_x_orig.shape[0] # gives number of rows
+num_px = train_set_x_orig.shape[1] # gives number of columns
 ### END CODE HERE ###
 
 print ("Number of training examples: m_train = " + str(m_train))
@@ -274,8 +274,7 @@ def propagate(w, b, X, Y):
     return grads, cost
 
 
-w, b, X, Y = np.array([[1.],
-                       [2.]]), 
+w, b, X, Y = np.array([[1.], [2.]]), 
                        2., 
                        np.array([[1.,2.,-1.],[3.,4.,-3.2]]), 
                        np.array([[1,0,1]])
@@ -424,10 +423,9 @@ def predict(w, b, X):
         
         # Convert probabilities A[0,i] to actual predictions p[0,i]
         ### START CODE HERE ### (≈ 4 lines of code)
-        Y_prediction += A[i]
-        
-    Y_prediction /= 2
-    Y_prediction = np.where(Y_prediction > 0.5, 1.0 ,0.0)
+        Y_prediction += A[0,i]
+        # Y_prediction /= 2
+        # Y_prediction = np.where(Y_prediction > 0.5, 1.0 ,0.0)
         ### END CODE HERE ###
 
     assert(Y_prediction.shape == (1, m))
